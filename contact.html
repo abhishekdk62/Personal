@@ -183,138 +183,60 @@
           </div>
 
           <form
-            action="https://formspree.io/f/mrbgyorl"
-            method="post"
-            class="php-email-form"
-            id="contactForm"
-          >
-            <div class="row gy-4">
-              <div class="col-md-6">
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control"
-                  placeholder="Your Name"
-                  required=""
-                />
-              </div>
-              <div class="col-md-6">
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email"
-                  placeholder="Your Email"
-                  required=""
-                />
-              </div>
-              <div class="col-md-12">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="subject"
-                  placeholder="Subject"
-                  required=""
-                />
-              </div>
-              <div class="col-md-12">
-                <textarea
-                  class="form-control"
-                  name="message"
-                  rows="6"
-                  placeholder="Message"
-                  required=""
-                ></textarea>
-              </div>
-              <div class="col-md-12 text-center">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Your message has been sent. Thank you!
-                </div>
-                <button type="submit">Send Message</button>
-              </div>
+          action="https://formspree.io/f/mdkowprw"
+          method="post"
+          class="php-email-form"
+          id="contactForm"
+        >
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                placeholder="Your Name"
+                required=""
+              />
             </div>
-          </form>
-
-          <script>
-            // Attach event listener to the form
-            const form = document.getElementById("contactForm");
-            form.addEventListener("submit", function (e) {
-              e.preventDefault(); // Prevent default form submission
-
-              // Collect form elements
-              const name = document.querySelector('input[name="name"]');
-              const email = document.querySelector('input[name="email"]');
-              const subject = document.querySelector('input[name="subject"]');
-              const message = document.querySelector(
-                'textarea[name="message"]'
-              );
-              const loading = document.querySelector(".loading");
-              const errorMessage = document.querySelector(".error-message");
-              const sentMessage = document.querySelector(".sent-message");
-
-              // Clear previous states
-              loading.style.display = "none";
-              errorMessage.style.display = "none";
-              sentMessage.style.display = "none";
-
-              // Validation flags
-              let isValid = true;
-
-              // Validate name
-              if (name.value.trim() === "") {
-                alert("Name is required!");
-                name.classList.add("error");
-                isValid = false;
-              } else {
-                name.classList.remove("error");
-              }
-
-              // Validate email
-              const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-              if (
-                email.value.trim() === "" ||
-                !emailPattern.test(email.value)
-              ) {
-                alert("Please enter a valid email!");
-                email.classList.add("error");
-                isValid = false;
-              } else {
-                email.classList.remove("error");
-              }
-
-              // Validate subject
-              if (subject.value.trim() === "") {
-                alert("Subject is required!");
-                subject.classList.add("error");
-                isValid = false;
-              } else {
-                subject.classList.remove("error");
-              }
-
-              // Validate message
-              if (message.value.trim() === "") {
-                alert("Message is required!");
-                message.classList.add("error");
-                isValid = false;
-              } else {
-                message.classList.remove("error");
-              }
-
-              // If all validations pass
-              if (isValid) {
-                loading.style.display = "block"; // Show loading message
-
-                // Simulate email sending
-                setTimeout(() => {
-                  loading.style.display = "none";
-                  sentMessage.style.display = "block"; // Show success message
-                  alert("Email Sent!");
-                  form.reset(); // Clear the form fields
-                }, 1000);
-              }
-            });
-          </script>
+            <div class="col-md-6">
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="Your Email"
+                required=""
+              />
+            </div>
+            <div class="col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                name="subject"
+                placeholder="Subject"
+                required=""
+              />
+            </div>
+            <div class="col-md-12">
+              <textarea
+                class="form-control"
+                name="message"
+                rows="6"
+                placeholder="Message"
+                required=""
+              ></textarea>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="loading" style="display: none;">Loading...</div>
+              <div class="error-message" style="display: none; color: red;">Error occurred. Please check your inputs.</div>
+              <div class="sent-message" style="display: none; color: green;">
+                Your message has been sent. Thank you!
+              </div>
+              <button type="submit">Send Message</button>
+            </div>
+          </div>
+        </form>
+        
+          
         </div>
       </section>
       <!-- /Contact Section -->
@@ -359,6 +281,86 @@
 
     <!-- Preloader -->
     <div id="preloader"></div>
+    <script>
+      // Attach event listener to the form
+      const form = document.getElementById("contactForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
+    
+        // Collect form elements
+        const name = document.querySelector('input[name="name"]');
+        const email = document.querySelector('input[name="email"]');
+        const subject = document.querySelector('input[name="subject"]');
+        const message = document.querySelector('textarea[name="message"]');
+        const loading = document.querySelector(".loading");
+        const errorMessage = document.querySelector(".error-message");
+        const sentMessage = document.querySelector(".sent-message");
+    
+        // Clear previous states
+        loading.style.display = "none";
+        errorMessage.style.display = "none";
+        sentMessage.style.display = "none";
+    
+        // Validation flags
+        let isValid = true;
+    
+        // Validate name (only letters and spaces)
+        const namePattern = /^[A-Za-z\s]+$/;
+        if (name.value.trim() === "" || !namePattern.test(name.value)) {
+          isValid = false;
+          name.classList.add("error");
+          alert("Name must not be empty and should contain only letters and spaces!");
+        } else {
+          name.classList.remove("error");
+        }
+    
+        // Validate email (basic pattern matching)
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (email.value.trim() === "" || !emailPattern.test(email.value)) {
+          isValid = false;
+          email.classList.add("error");
+          alert("Please enter a valid email address!");
+        } else {
+          email.classList.remove("error");
+        }
+    
+        // Validate subject (non-empty)
+        if (subject.value.trim() === "") {
+          isValid = false;
+          subject.classList.add("error");
+          alert("Subject is required!");
+        } else {
+          subject.classList.remove("error");
+        }
+    
+        // Validate message (non-empty)
+        if (message.value.trim() === "") {
+          isValid = false;
+          message.classList.add("error");
+          alert("Message is required!");
+        } else {
+          message.classList.remove("error");
+        }
+    
+        // Stop further execution if validation fails
+        if (!isValid) {
+          errorMessage.style.display = "block";
+          return;
+        }
+    
+        // If all validations pass
+        loading.style.display = "block"; // Show loading indicator
+    
+        // Simulate form submission and show success message
+        setTimeout(() => {
+          loading.style.display = "none";
+          sentMessage.style.display = "block";
+          alert("Your message has been sent successfully!");
+          form.reset(); // Reset the form fields
+        }, 1000);
+      });
+    </script>
+    
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
